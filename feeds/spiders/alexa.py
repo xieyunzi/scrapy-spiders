@@ -26,7 +26,7 @@ class AlexaSpider(scrapy.Spider):
 
             item = items.AlexaSiteItem()
             item['_collection'] = 'alexa_sites'
-            item['_tags'] = ['site', 'alexa', "country:{}".format(country)]
+            item['_tags'] = ['type:site', 'source:alexa.com', "country:{}".format(country)]
             item['rank'] = site.css('.number::text').extract()[0]
             item['domain'] = site.css('.DescriptionCell > p > a::text').extract()[0]
 

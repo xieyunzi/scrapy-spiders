@@ -38,6 +38,7 @@ class MongoPipeline(object):
 
     def process_item(self, item, spider):
         d_item = dict(item)
-        collection = d_item.pop('_collection')
-        self.db[collection].insert_one(d_item)
+        if bool(d_item) and d_item.get('_collection'):
+            collection = d_item.pop('_collection')
+            self.db[collection].insert_one(d_item)
         return item
